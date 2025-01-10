@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "start": "node entrypoint.js",
-    "build": "tsc"
+    "build": "tsc",
+    "foo": "ncc build ./dist/main.js -o ../dist"
   },
   "keywords": [],
   "author": "Aaditya Sharma",
@@ -14,6 +15,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
+    "@azure/identity": "4.5.0",
     "@types/chai": "^4.2.14",
     "@types/chai-as-promised": "^7.1.3",
     "@types/js-yaml": "^4.0.0",
@@ -24,7 +26,6 @@
     "@types/uuid": "^8.3.0",
     "actions-secret-parser": "^1.0.2",
     "adm-zip": "^0.4.16",
-    "@azure/identity": "4.5.0",
     "azure-pipelines-task-lib": "2.8.0",
     "azure-pipelines-tasks-azure-arm-rest-v2": "1.0.3",
     "chai-as-promised": "^7.1.1",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/uuid": "^8.3.0",
+    "@vercel/ncc": "^0.38.3",
     "chai": "^4.3.0",
     "mocha": "^8.3.0",
     "node-stream-zip": "^1.11.3",
@@ -46,9 +48,9 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
-	"packageManager": "npm@10.8.2",
-	"volta": {
-		"npm": "10.8.2",
-		"node": "20.18.1"
-	}
+  "packageManager": "npm@10.8.2",
+  "volta": {
+    "npm": "10.8.2",
+    "node": "20.18.1"
+  }
 }
