@@ -4,6 +4,7 @@
 
 import * as core from '@actions/core';
 import { getBearer, getManagedIdentityBearer } from './service_principal_client_utils';
+import { DefaultAzureCredential, getBearerTokenProvider } from '@azure/identity';
 
 export enum DeployStatus {
     success = 'Success',
@@ -56,13 +57,18 @@ export async function getParams(dataplane: boolean = false, env: string = ""): P
             resourceManagerEndpointUrl = await getRMUrl(env);
         }
 
-        let bearer: string;
+        // let bearer: string;
+				//
+        // if(managedIdentity == 'true'){
+        //     bearer = await getManagedIdentityBearer(resourceManagerEndpointUrl);
+        // }else{
+        //     bearer = await getBearer(clientId, clientSecret, subscriptionId, tenantId, resourceManagerEndpointUrl, activeDirectoryEndpointUrl);
+        // }
 
-        if(managedIdentity == 'true'){
-            bearer = await getManagedIdentityBearer(resourceManagerEndpointUrl);
-        }else{
-            bearer = await getBearer(clientId, clientSecret, subscriptionId, tenantId, resourceManagerEndpointUrl, activeDirectoryEndpointUrl);
-        }
+				const credential = new DefaultAzureCredential()
+				const scope = `${resourceManagerEndpointUrl}/.default`;
+				const getAccessToken = getBearerTokenProvider(credential, scope);
+				const token = await getAccessToken();
 
         let params: Params = {
             'clientId': clientId,
@@ -72,7 +78,7 @@ export async function getParams(dataplane: boolean = false, env: string = ""): P
             'managedIdentity': managedIdentity,
             'activeDirectoryEndpointUrl': activeDirectoryEndpointUrl,
             'resourceManagerEndpointUrl': resourceManagerEndpointUrl,
-            'bearer': bearer,
+            'bearer': token,
             'resourceGroup': resourceGroup
         };
         return params;
