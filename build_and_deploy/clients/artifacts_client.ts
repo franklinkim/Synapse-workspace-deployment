@@ -209,7 +209,7 @@ export class ArtifactClient {
             return await this.artifactDeploymentTask(baseUrl,
                 `${Artifact.kqlScript.toString()}s`, payload, token);
         } catch (err) {
-            SystemLogger.info(err);
+            SystemLogger.info(JSON.stringify(err));
             throw new Error("KqlScript deployment failed " + JSON.stringify(err));
         }
     }

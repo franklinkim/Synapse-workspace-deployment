@@ -30,7 +30,7 @@ export async function main() {
             case 'default':
                 throw new Error(`Operation not supported : ${operation}`);
         }
-    } catch (err) {
+    } catch (err: any) {
         throw new Error(err.message);
     }
 }

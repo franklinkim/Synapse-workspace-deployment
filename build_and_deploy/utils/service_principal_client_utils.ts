@@ -48,7 +48,7 @@ export async function getBearer(
 
         });
 
-    } catch (err) {
+    } catch (err: any) {
         throw new Error("Unable to fetch the service principal token: " + err.message);
     }
 }
@@ -84,7 +84,7 @@ export async function getManagedIdentityBearer(
 
         });
 
-    } catch (err) {
+    } catch (err: any) {
         throw new Error("Unable to fetch the managed identity bearer token: " + err.message);
     }
 }
@@ -119,7 +119,7 @@ export async function getWorkspaceLocation(params: Params, targetWorkspace: stri
                 return resolve(JSON.parse(body)['location']);
             })
         });
-    } catch (err) {
+    } catch (err: any) {
         throw new Error("Unable to fetch the location of the workspace: " + err.message);
     }
 }

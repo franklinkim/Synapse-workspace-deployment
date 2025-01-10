@@ -24,6 +24,7 @@
     "@types/uuid": "^8.3.0",
     "actions-secret-parser": "^1.0.2",
     "adm-zip": "^0.4.16",
+    "@azure/identity": "4.5.0",
     "azure-pipelines-task-lib": "2.8.0",
     "azure-pipelines-tasks-azure-arm-rest-v2": "1.0.3",
     "chai-as-promised": "^7.1.1",
@@ -44,5 +45,10 @@
     "sinon": "^9.2.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
-  }
+  },
+	"packageManager": "npm@10.8.2",
+	"volta": {
+		"npm": "10.8.2",
+		"node": "20.18.1"
+	}
 }
